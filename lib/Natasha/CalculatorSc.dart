@@ -11,17 +11,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Calculator App',
       theme: ThemeData.dark(),
-      home: Calculator(),
+      home: CalculatorSc(),
     );
   }
 }
 
-class Calculator extends StatefulWidget {
+class CalculatorSc extends StatefulWidget {
   @override
-  State<Calculator> createState() => _CalculatorState();
+  State<CalculatorSc> createState() => _CalculatorScState();
 }
 
-class _CalculatorState extends State<Calculator> {
+class _CalculatorScState extends State<CalculatorSc> {
   String userInput = "";
   String result = "0";
 
@@ -36,10 +36,10 @@ class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF006400), 
+      backgroundColor: Color(0xFF006400),
       appBar: AppBar(
         title: Text('Calculator'),
-        backgroundColor: Color(0xFF008000), 
+        backgroundColor: Color(0xFF008000),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -104,9 +104,9 @@ class _CalculatorState extends State<Calculator> {
   Widget customButton(String value) {
     return Expanded(
       child: ElevatedButton(
+        
         style: ElevatedButton.styleFrom(
-          primary: getBgColor(value),
-          onPrimary: getColor(value),
+          foregroundColor: getColor(value), backgroundColor: getBgColor(value),
         ),
         onPressed: () => handleButtons(value),
         child: Text(
@@ -122,16 +122,16 @@ class _CalculatorState extends State<Calculator> {
 
   Color getColor(String text) {
     if (_isOperator(text)) {
-      return Color(0xFF00ff00); 
+      return Color(0xFF00ff00);
     }
     return Colors.white;
   }
 
   Color getBgColor(String text) {
     if (text == 'C' || text == 'AC') {
-      return Color(0xFF00ff00); 
+      return Color(0xFF00ff00);
     }
-    return Color(0xFF008000); 
+    return Color(0xFF008000);
   }
 
   void handleButtons(String text) {
